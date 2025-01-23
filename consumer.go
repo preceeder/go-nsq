@@ -491,10 +491,9 @@ retry:
 	}
 	err := apiRequestNegotiateV1(r.lookupdHttpClient, "GET", endpoint, headers, &data)
 	if err != nil {
-		r.log(LogLevelError, "error querying nsqlookupd (%s) - %s", endpoint, err)
 		retries++
-		if retries < 3 {
-			r.log(LogLevelInfo, "retrying with next nsqlookupd")
+		if retries < 1 {
+			//r.log(LogLevelError, "error querying nsqlookupd (%s) - %s", endpoint, err)
 			goto retry
 		}
 		return
