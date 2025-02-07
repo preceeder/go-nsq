@@ -482,8 +482,6 @@ func (r *Consumer) queryLookupd() {
 retry:
 	endpoint := r.nextLookupdEndpoint()
 
-	//r.log(LogLevelInfo, "querying nsqlookupd %s", endpoint)
-
 	var data lookupResp
 	headers := make(http.Header)
 	if r.config.AuthSecret != "" && r.config.LookupdAuthorization {
