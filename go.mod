@@ -1,4 +1,4 @@
-module github.com/nsqio/go-nsq
+module github.com/preceeder/go-nsq
 
 go 1.17
 
