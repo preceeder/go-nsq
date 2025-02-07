@@ -482,7 +482,7 @@ func (r *Consumer) queryLookupd() {
 retry:
 	endpoint := r.nextLookupdEndpoint()
 
-	r.log(LogLevelInfo, "querying nsqlookupd %s", endpoint)
+	//r.log(LogLevelInfo, "querying nsqlookupd %s", endpoint)
 
 	var data lookupResp
 	headers := make(http.Header)
@@ -493,7 +493,7 @@ retry:
 	if err != nil {
 		retries++
 		if retries < 1 {
-			//r.log(LogLevelError, "error querying nsqlookupd (%s) - %s", endpoint, err)
+			r.log(LogLevelError, "error querying nsqlookupd (%s) - %s", endpoint, err)
 			goto retry
 		}
 		return
