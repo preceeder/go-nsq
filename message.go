@@ -24,6 +24,9 @@ type Message struct {
 
 	NSQDAddress string
 
+	Topic   string
+	Channel string
+
 	Delegate MessageDelegate
 
 	autoResponseDisabled int32
@@ -140,14 +143,15 @@ func (m *Message) WriteTo(w io.Writer) (int64, error) {
 
 // DecodeMessage deserializes data (as []byte) and creates a new Message
 // message format:
-//  [x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]...
-//  |       (int64)        ||    ||      (hex string encoded in ASCII)           || (binary)
-//  |       8-byte         ||    ||                 16-byte                      || N-byte
-//  ------------------------------------------------------------------------------------------...
-//    nanosecond timestamp    ^^                   message ID                       message body
-//                         (uint16)
-//                          2-byte
-//                         attempts
+//
+//	[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]...
+//	|       (int64)        ||    ||      (hex string encoded in ASCII)           || (binary)
+//	|       8-byte         ||    ||                 16-byte                      || N-byte
+//	------------------------------------------------------------------------------------------...
+//	  nanosecond timestamp    ^^                   message ID                       message body
+//	                       (uint16)
+//	                        2-byte
+//	                       attempts
 func DecodeMessage(b []byte) (*Message, error) {
 	var msg Message
 
