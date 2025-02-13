@@ -4,7 +4,7 @@ Package nsq is the official Go package for NSQ (http://nsq.io/).
 It provides high-level Consumer and Producer types as well as low-level
 functions to communicate over the NSQ protocol.
 
-Consumer
+# Consumer
 
 Consuming messages from NSQ can be done by creating an instance of a Consumer and supplying it a handler.
 
@@ -12,7 +12,7 @@ Consuming messages from NSQ can be done by creating an instance of a Consumer an
 	import (
 		"log"
 		"os/signal"
-		"github.com/nsqio/go-nsq"
+		"github.com/preceeder/go-nsq"
 	)
 
 	type myMessageHandler struct {}
@@ -60,7 +60,7 @@ Consuming messages from NSQ can be done by creating an instance of a Consumer an
 		consumer.Stop()
 	}
 
-Producer
+# Producer
 
 Producing messages can be done by creating an instance of a Producer.
 
@@ -83,6 +83,5 @@ Producing messages can be done by creating an instance of a Producer.
 
 	// Gracefully stop the producer when appropriate (e.g. before shutting down the service)
 	producer.Stop()
-
 */
 package nsq
